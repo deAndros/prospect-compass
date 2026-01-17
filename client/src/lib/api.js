@@ -29,6 +29,14 @@ export async function apiFetch(endpoint, options = {}) {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
 
   if (!response.ok) {
+    // Si el token ha expirado o no es válido, limpiar sesión y redirigir
+    if (response.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = '/login';
+      return null;
+    }
+
     const errorData = await response.json().catch(() => ({}));
     const error = new Error(errorData.message || 'La solicitud a la API falló');
     error.status = response.status;
