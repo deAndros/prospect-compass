@@ -136,11 +136,12 @@ Próximas funcionalidades y mejoras planificadas:
 
 - [ ] **Usuarios (Baja)**: Implementación de eliminación de cuentas.
 - [ ] **Equipos (ABM + Roles)**: Gestión de equipos, administración y permisos.
+- [ ] **Productos (ABM + Asociación a Equipos)**: Gestión de catálogo de productos vinculados a equipos.
 - [ ] **Verificación de Email**: Validación de identidad mediante correo electrónico.
 - [ ] **Búsqueda con n8n**: Integración con n8n para potenciar el descubrimiento.
 - [ ] **Campañas de Email (n8n)**: Automatización de outreach mediante flujos de n8n.
 - [ ] **Multi-LLM Factory**: Soporte para Anthropic, OpenAI y otros además de Gemini.
-- [ ] **Modelos Locales**: Entrenamiento e implementación de modelos on-premise.
+- [ ] **Modelos Locales**: Entrenamiento e implementación de modelos propios.
 - [ ] **Exportación**: Descarga a CSV/Excel de prospectos y listas.
 - [ ] **Notificaciones**: Alertas por email integradas.
 - [ ] **Dashboard de Métricas**: Visualización de KPIs y rendimiento.

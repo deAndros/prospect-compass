@@ -5,8 +5,8 @@ const LeadSchema = new mongoose.Schema({
   url: { type: String, required: true, unique: true }, // URL actúa como identificador único
   email: String,
   phone: String,
-  country: String,
-  niche: String, // Agregado para almacenar el rubro de búsqueda
+  country: { type: String, required: true },
+  niche: { type: String, required: true }, // Agregado para almacenar el rubro de búsqueda
   type: String, // ej: "Centro de Capacitación", "Universidad"
   signals: [String], // ej: "Ofrece cursos", "Tiene checkout"
   social_media: [
