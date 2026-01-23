@@ -21,31 +21,20 @@ export const discoverLeads = async (country, niche, maxResults = 5) => {
       
       Para cada entidad encontrada, extrae:
       - Nombre oficial
-      - URL del sitio web oficial si lo tiene
-      - Email de contacto si lo tiene
-      - Teléfono de contacto si lo tiene
+      - URL del sitio web oficial
+      - País
+      - Rubro (nicho)
       - Tipo de organización (ej: Universidad, Consultora)
-      - Social media: Array de objetos (ver abajo).
-      - Señales clave (por qué coinciden).
+      - Señales clave (por qué pueden estar interesadas en vender cursos de E-Learning).
       
       FILTRO DE INFORMACIÓN:
       - Para cada entidad encontrada, si NO encuentras sitio web oficial, devuelve "url": null.
-      - Para cada entidad encontrada, si NO encuentras redes sociales asociadas a esa entidad, devuelve "social_media": [].
-      - No inventes urls de redes sociales, asegurate que las redes sociales sean perfiles activos y que estén asociados a la entidad.
+      - No inventes URLs, asegúrate de que el sitio web oficial sea correcto y funcional.
       
-      REDES SOCIALES:
-      - Busca mediante scraping en los sitios web oficiales de las entidades encontradas los perfiles en las redes socialdes (Linkedin, Youtube, Instagram, Facebook, TikTok) de cada una. Si no encuentras alguno, no lo agregues, las url de las redes sociales deben extraerse si o si del sitio web oficial de cada entidad/prospecto (no inventar/alucinar una url).
-      - **ESTIMA LA CANTIDAD DE SEGUIDORES DE CADA RED SOCIAL ENCONTRADA**: Estima una cantidad de seguidores para cada red social y añadelo al campo "followers" que retornas para esa red social. Por ejemplo:
-                {
-                    "network": "LinkedIn",
-                    "url": "https://www.linkedin.com/{perfil oficial de la entidad}}",
-                    "followers": "15k +"
-                }
-      - FORMATO DE RESPUESTA: Array de objetos.
-      - Ejemplo: "social_media": [{ "network": "LinkedIn", "url": "...", "followers": "15k+" }]
-
+      FORMATO DE RESPUESTA: Array de objetos JSON.
+      
       Devuelve el resultado ESTRICTAMENTE como un array JSON de objetos con las claves: 
-      name, url, email, phone, country, niche, type, social_media, signals.
+      name, url, country, niche, type, signals.
       
       No incluyas markdown ni explicaciones, solo el string JSON válido.
     `

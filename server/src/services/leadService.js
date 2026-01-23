@@ -1,12 +1,36 @@
 import mongoose from 'mongoose';
 import Lead from '#models/leadModel.js';
 import * as geminiService from './geminiService.js';
+import * as brandfetchService from './brandfetchService.js';
 
 /**
- * Descubrir prospectos usando IA Gemini
+ * Descubrir prospectos usando IA Gemini y enriquecer con Brandfetch
  */
 export const discoverLeads = async (country, niche, maxResults = 5) => {
-    return await geminiService.discoverLeads(country, niche, maxResults);
+    // 1. Obtener prospectos base de Gemini
+    const leads = await geminiService.discoverLeads(country, niche, maxResults);
+
+    // 2. Enriquecer cada prospecto con redes sociales de Brandfetch
+    // Hacemos esto en paralelo para no demorar demasiado, pero con cuidado de rate limits si fueran muchos.
+    // Al ser maxResults usualmente bajo (ej. 5), Promise.all es aceptable.
+    const enrichedLeads = await Promise.all(
+        leads.map(async (lead) => {
+            let socialLinks = [];
+            if (lead.url) {
+                try {
+                    socialLinks = await brandfetchService.getSocialLinks(lead.url);
+                } catch (error) {
+                    console.error(`Error enriching lead ${lead.name}:`, error);
+                }
+            }
+            return {
+                ...lead,
+                social_media: socialLinks,
+            };
+        })
+    );
+
+    return enrichedLeads;
 };
 
 /**

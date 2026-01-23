@@ -1,5 +1,5 @@
 {
-  "name": "prospect-compass-server",
+  "name": "prospectia-server",
   "version": "1.0.0",
   "description": "Backend for ProspectIA",
   "main": "src/index.js",
